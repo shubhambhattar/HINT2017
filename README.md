@@ -1,2 +1,2 @@
 # HINT2017
-Our submission for IIITA-Hack In The North 2017
+We are building a Chat Bot to provide a smooth flow of information to the people. The Chat Bot is being developed for Telegram App.
