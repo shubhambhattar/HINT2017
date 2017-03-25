@@ -7,7 +7,9 @@ blood_data = []
 # To Do:
 # Solve Wrong Query address issue of S.M.S. Hospital Jaipur
 def get_address(bloodbank):
-    name, address, city = bloodbank['Name'], bloodbank['Address'], bloodbank['City']
+    name = bloodbank['Name']
+    address = bloodbank['Address']
+    city = bloodbank['City']
     query_address = name
 
     if address != 'NA':
