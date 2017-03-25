@@ -4,31 +4,17 @@ import telepot
 # store the data from CSV file to this variable as a list of tuples
 blood_data = []
 
+# To Do:
+# Solve Wrong Query address issue of S.M.S. Hospital Jaipur
 def get_address(bloodbank):
     name, address, city = bloodbank['Name'], bloodbank['Address'], bloodbank['City']
-    found_name, found_address = False, False
+    query_address = name
 
-    query_address = ''
-    if name != 'NA':
-        found_name = True
-        query_address += name
     if address != 'NA':
-        if found_name:
-            query_address += ', ' + address
-        else:
-            query_address += address
-        found_address = True
+        query_address += ', ' + address
 
-    if city != 'NA':
-        if found_address:
-            query_address += ', ' + city
-        else:
-            if found_name:
-                query_address += ', ' + city
-            else:
-                query_address += city
-
-    return query_address
+    query_address += ', ' + city
+    return '%20'.join(query_address.split(' '))
 
 def handle(msg):
 
@@ -74,8 +60,7 @@ def handle(msg):
                 elif attributes[j] == 'Address':
                     temp += attributes[j] + ': ' + bloodbank['Address'] + '\n\n'
                     query_address = get_address(bloodbank)
-                    query_address = '%20'.join(query_address.split(' '))
-                    temp += '<a href="http://maps.google.com/?q=' + str(query_address) + '">' + 'Find in Google Maps</a>\n\n'
+                    temp += '<a href="http://maps.google.com/?q=' + query_address + '">Find in Google Maps</a>\n\n'
                 else:
                     temp += attributes[j] + ': ' + bloodbank[attributes[j]] + '\n\n'
 
