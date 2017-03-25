@@ -41,7 +41,7 @@ def handle(msg):
     for i in range(len(blood_data)):
 
         # check whether the given city is in the database or not
-        if blood_data[i][2] == msg['text']:
+        if blood_data[i][2].lower() == msg['text'].lower():
 
             # indexes of the required attributes from the `data/bloodbanks.csv`
             indexes = [4, 5, 2, 1, 6, 7]
