@@ -50,20 +50,27 @@ def handle(msg):
             temp = ''
 
             for j in range(6):
-                bloodbank[attributes[j]] = blood_data[i][indexes[j]]
+                bloodbank[attributes[j]] = str(blood_data[i][indexes[j]])
+                temp += attributes[j]
                 if attributes[j] == 'Contact':
-                    temp += attributes[j] + ': \n'
+                    temp += ': \n'
 
                     # print in different lines the different contact numbers
                     numbers = bloodbank[attributes[j]].split(',')
                     for value in numbers:
-                        temp += '<a href="tel//:' + str(''.join(value.split(' '))) + '/">' + str(value) + '</a>\n'
+
+                        # adding contact details in HTML format
+                        temp += '<a href="tel//:' + (''.join(value.split(' ')))
+                        temp += '/">' + value + '</a>\n'
                 elif attributes[j] == 'Address':
-                    temp += attributes[j] + ': ' + bloodbank['Address'] + '\n\n'
+                    temp += ': ' + bloodbank['Address'] + '\n\n'
                     query_address = get_address(bloodbank)
-                    temp += '<a href="http://maps.google.com/?q=' + query_address + '">Find in Google Maps</a>\n\n'
+
+                    # adding Location details in HTML format
+                    temp += '<a href="http://maps.google.com/?q='
+                    temp += query_address + '">Find in Google Maps</a>\n\n'
                 else:
-                    temp += attributes[j] + ': ' + bloodbank[attributes[j]] + '\n\n'
+                    temp += ': ' + bloodbank[attributes[j]] + '\n\n'
 
             # send the message and set the parse_mode to `HTML` to correctly
             # format hyperlinks - Google Maps and Contact details
