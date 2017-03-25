@@ -45,7 +45,8 @@ def handle(msg):
 
             # indexes of the required attributes from the `data/bloodbanks.csv`
             indexes = [4, 5, 2, 1, 6, 7]
-            attributes = ['Name', 'Address', 'City', 'State', 'Pincode', 'Contact']
+            attributes = ['Name', 'Address', 'City',
+                        'State', 'Pincode', 'Contact']
             temp = ''
 
             for j in range(6):
@@ -53,7 +54,7 @@ def handle(msg):
                 if attributes[j] == 'Contact':
                     temp += attributes[j] + ': \n'
 
-                    # split in different lines if there are multiple contact numbers
+                    # print in different lines the different contact numbers
                     numbers = bloodbank[attributes[j]].split(',')
                     for value in numbers:
                         temp += '<a href="tel//:' + str(''.join(value.split(' '))) + '/">' + str(value) + '</a>\n'
